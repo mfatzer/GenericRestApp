@@ -1,41 +1,11 @@
 
-.header{
-    background-color: rgb(250,250,250);
-    height: 50px;
-    border-bottom: 1px solid black;
-    margin-top: 0px;
-}
-
-.body{
-    background-color: rgb(250,250,250);
-    margin-top: 25px;
-    overflow-y: none; //schaltet scrollen aus und verbirgt Scrollbar
-}
-
 .card {
-    background-color: rgb(80,80,80);
+    background-color: rgb(250,250,250);
     margin: 10px 10px 20px 11px;
 }
 
 .item {
-    background-color: rgb(80,80,80);
-}
-
-.label{
-    color: rgb(240,240,240);
-}
-
-.toggle{
-    float:left;
-}
-
-.input{
-    color: #f53d3d;
-}
-
-// Placeholder Farbe (Google Chrome)
-*::-webkit-input-placeholder {
-  color: rgb(200,200,200) !important;
+    background-color: rgb(250,250,250);
 }
 
 #state{
@@ -45,4 +15,5 @@
 
 #submitButton{
     margin: 10px 10px 20px 11px;
+    background-color: #f53d3d;
 }
