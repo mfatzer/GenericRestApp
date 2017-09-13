@@ -7,39 +7,36 @@
 </ion-header>
 
 <ion-content class="body" padding>
-  <ion-card class="card">
-    <ion-card-content>
-      <ion-item class="item">
-        <ion-label class="label">LED Umschalten:</ion-label>
-        <ion-toggle [(ngModel)]="toggleValue" color="danger"></ion-toggle>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <ion-card-content>
-      <ion-item>
-        <ion-label>Nummer Auswählen:</ion-label>
-        <ion-range min="0" max="10" [(ngModel)]="rangeValue" color="danger">
-          <ion-label range-left>0</ion-label>
-          <ion-label range-right>10</ion-label>
-        </ion-range>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <ion-card-content>
-      <ion-item>
-        <ion-input [(ngModel)]="text" placeholder="Text Eingeben..."></ion-input>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <ion-card-content>
-      <ion-item>
-        <ion-label>LED Zustand:</ion-label>
-        <ion-label id="state">{{toggleValue}}</ion-label>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
-  <button (click)="showName()" id="submitButton" ion-button>Daten Senden</button>    
+    <ion-card *ngFor="let resource of restResources" class="card">
+      <ion-card-content *ngIf="resource.type === 'DIGITAL_OUTPUT'">
+        <ion-item class="item">
+          <ion-label class="label">{{resource.label}}:</ion-label>
+          <ion-toggle [(ngModel)]="toggleValue" color="danger"></ion-toggle>
+        </ion-item>
+      </ion-card-content>
+
+      <ion-card-content *ngIf="resource.type === 'ANALOG_OUTPUT'">
+        <ion-item>
+          <ion-label>{{resource.label}}:</ion-label>
+          <ion-range min="0" max="10" [(ngModel)]="rangeValue" color="danger">
+            <ion-label range-left>0</ion-label>
+            <ion-label range-right>10</ion-label>
+          </ion-range>
+        </ion-item>
+      </ion-card-content>
+
+      <!--<ion-card-content>
+        <ion-item>
+          <ion-input [(ngModel)]="text" placeholder="Text Eingeben..."></ion-input>
+        </ion-item>
+      </ion-card-content>-->
+
+      <ion-card-content *ngIf="resource.type === 'DIGITAL_INPUT'">
+        <ion-item>
+          <ion-label>{{resource.label}}:</ion-label>
+          <ion-label id="state">{{toggleValue}}</ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  <!--<button (click)="showName()" id="submitButton" ion-button>Daten Senden</button>    -->
 </ion-content>

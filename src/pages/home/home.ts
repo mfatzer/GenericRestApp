@@ -1,3 +1,4 @@
+import { ArduinoRestService } from './arduino-rest.service';
 import {Component} from '@angular/core';
 import {NavController, AlertController} from 'ionic-angular';
 
@@ -10,7 +11,30 @@ export class HomePage {
     rangeValue: number = 0;
     toggleValue: boolean = false;
 
-    constructor(public navCtrl: NavController, private alertController: AlertController) {
+    constructor(
+        public navCtrl: NavController, 
+        private alertController: AlertController,
+        private arduinoRestService: ArduinoRestService) {
+    }
+
+    public get restResources(): any {
+        return this.arduinoRestService.restResources;
+    }
+
+    public isDigitalInput(resource: any): boolean {
+        return false;
+    } 
+
+    public isDigitalOutput(resource: any): boolean {
+        return false;
+    } 
+
+    public isAnalogOutput(resource: any): boolean {
+        return false;
+    } 
+
+    public getDigitalValue(resource: any): boolean {
+        return resource.on;
     }
 
     showName() {
