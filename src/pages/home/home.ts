@@ -6,15 +6,19 @@ import {NavController, AlertController} from 'ionic-angular';
 })
 
 export class HomePage {
-    text: string;
-    rangeValue: number;
+    text: string = "";
+    rangeValue: number = 0;
+    toggleValue: boolean = false;
 
     constructor(public navCtrl: NavController, private alertController: AlertController) {
     }
 
     showName() {
         let alert = this.alertController.create({
-            title: 'Input: ' + this.text + ' ' + this.rangeValue,
+            title: 'Input: ' 
+              + this.text + ' ' 
+              + this.rangeValue +  ' ' 
+              + this.toggleValue,
             buttons: ['OK']
         });
         alert.present();
