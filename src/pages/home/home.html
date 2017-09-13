@@ -1,14 +1,44 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
+    <ion-title class="header">
+      Arduino Steuerung
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content class="body" padding>
+  <ion-card class="card">
+    <ion-card-content>
+      <ion-item class="item">
+        <ion-label class="label">LED Umschalten:</ion-label>
+        <ion-toggle [(ngModel)]="toggleValue" color="danger"></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Nummer Auswählen:</ion-label>
+        <ion-range min="0" max="10" [(ngModel)]="rangeValue" color="danger">
+          <ion-label range-left>0</ion-label>
+          <ion-label range-right>10</ion-label>
+        </ion-range>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-input class="input" placeholder="Text Eingeben..." clearInput></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>LED Zustand:</ion-label>
+        <ion-label id="state">OFF<!--Value von home.ts (entweder ON oder OFF)--></ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
