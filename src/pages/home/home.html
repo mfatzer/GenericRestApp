@@ -8,19 +8,19 @@
 
 <ion-content class="body" padding>
     <ion-card *ngFor="let resource of restResources" class="card">
-      <ion-card-content *ngIf="resource.type === 'DIGITAL_OUTPUT'">
+      <ion-card-content *ngIf="resource.isDigitalOutput()">
         <ion-item class="item">
-          <ion-label class="label">{{resource.label}}:</ion-label>
-          <ion-toggle [(ngModel)]="toggleValue" color="danger"></ion-toggle>
+          <ion-label class="label">{{resource.label}} ({{resource.on}}):</ion-label>
+          <ion-toggle [(ngModel)]="resource.on" color="danger"></ion-toggle>
         </ion-item>
       </ion-card-content>
 
-      <ion-card-content *ngIf="resource.type === 'ANALOG_OUTPUT'">
+      <ion-card-content *ngIf="resource.isAnalogOutput()">
         <ion-item>
-          <ion-label>{{resource.label}}:</ion-label>
-          <ion-range min="0" max="10" [(ngModel)]="rangeValue" color="danger">
-            <ion-label range-left>0</ion-label>
-            <ion-label range-right>10</ion-label>
+          <ion-label>{{resource.label}} ({{resource.value}}):</ion-label>
+          <ion-range min="resource.min" max="resource.max" [(ngModel)]="resource.value" color="danger">
+            <ion-label range-left>{{resource.min}}</ion-label>
+            <ion-label range-right>{{resource.max}}</ion-label>
           </ion-range>
         </ion-item>
       </ion-card-content>
@@ -31,10 +31,10 @@
         </ion-item>
       </ion-card-content>-->
 
-      <ion-card-content *ngIf="resource.type === 'DIGITAL_INPUT'">
+      <ion-card-content *ngIf="resource.isDigitalInput()">
         <ion-item>
-          <ion-label>{{resource.label}}:</ion-label>
-          <ion-label id="state">{{toggleValue}}</ion-label>
+          <ion-label>{{resource.label}} ({{resource.on}}):</ion-label>
+          <ion-label id="state">{{resource.on}}</ion-label>
         </ion-item>
       </ion-card-content>
     </ion-card>

@@ -1,4 +1,4 @@
-import { AbstractArduinoResource, DigitalOutput, DigitalInput, AnalogOutput, AnalogInput } from './arduino-resources';
+import { AbstractArduinoResource, DigitalOutput, DigitalInput, DigitalResource, AnalogOutput, AnalogInput } from './arduino-resources';
 import { ArduinoRestService } from './arduino-rest.service';
 
 
@@ -17,16 +17,45 @@ export class ArduinoResourceFactory {
                         jsonResource.label,
                         jsonResource.type,
                         jsonResource.pin,
-                        jsonResource.on,
+                        DigitalResource.stateStringToBool(jsonResource.on),
                         arduinoRestService));
+
             } else if (jsonResource.type === ArduinoResourceFactory.DIGITAL_INPUT_TYPE) {
+                result.push(
+                    new DigitalInput(
+                        jsonResource.label,
+                        jsonResource.type,
+                        ArduinoResourceFactory.stringToNumber(jsonResource.pin),
+                        DigitalResource.stateStringToBool(jsonResource.on),
+                        arduinoRestService));
 
             } else if (jsonResource.type === ArduinoResourceFactory.ANALOG_OUTPUT_TYPE) {
+                result.push(
+                    new AnalogOutput(
+                        jsonResource.label,
+                        jsonResource.type,
+                        ArduinoResourceFactory.stringToNumber(jsonResource.pin),
+                        ArduinoResourceFactory.stringToNumber(jsonResource.value),
+                        ArduinoResourceFactory.stringToNumber(jsonResource.min),
+                        ArduinoResourceFactory.stringToNumber(jsonResource.max),
+                        arduinoRestService));
 
             } else if (jsonResource.type === ArduinoResourceFactory.ANALOG_INPUT_TYPE) {
-
+                result.push(
+                    new AnalogInput(
+                        jsonResource.label,
+                        jsonResource.type,
+                        ArduinoResourceFactory.stringToNumber(jsonResource.pin),
+                        ArduinoResourceFactory.stringToNumber(jsonResource.value),
+                        ArduinoResourceFactory.stringToNumber(jsonResource.min),
+                        ArduinoResourceFactory.stringToNumber(jsonResource.max),
+                        arduinoRestService));
             }
         });
         return result;
+    }
+
+    private static stringToNumber(input: string): number {
+        return Number(input);
     }
 }

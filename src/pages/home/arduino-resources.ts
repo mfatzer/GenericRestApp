@@ -2,6 +2,11 @@ import { ArduinoRestService } from './arduino-rest.service';
 
 
 export abstract class AbstractArduinoResource {
+    private static readonly DIGITAL_OUTPUT: string = "DIGITAL_OUTPUT";
+    private static readonly DIGITAL_INPUT: string = "DIGITAL_INPUT";
+    private static readonly ANALOG_OUTPUT: string = "ANALOG_OUTPUT";
+    private static readonly ANALOG_INPUT: string = "ANALOG_INPUT";
+    
     public constructor(
         private _label: string, 
         private _type: string,
@@ -17,6 +22,22 @@ export abstract class AbstractArduinoResource {
 
     public get type(): string {
         return this._type;
+    }
+
+    public isDigitalOutput(): boolean {
+        return this.type === AbstractArduinoResource.DIGITAL_OUTPUT;
+    }
+
+    public isDigitalInput(): boolean {
+        return this.type === AbstractArduinoResource.DIGITAL_INPUT;
+    }
+
+    public isAnalogOutput(): boolean {
+        return this.type === AbstractArduinoResource.ANALOG_OUTPUT;
+    }
+
+    public isAnalogInput(): boolean {
+        return this.type === AbstractArduinoResource.ANALOG_INPUT;
     }
 
     public get pin(): number {
